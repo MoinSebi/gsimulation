@@ -1,7 +1,8 @@
 use rand::{Rng, thread_rng};
 use std::collections::HashSet;
 use rand::distributions::{Distribution, Uniform};
-use rand::seq::IteratorRandom; // 0.6.5
+use rand::seq::IteratorRandom;
+use crate::bed::bed; // 0.6.5
 
 
 
@@ -12,7 +13,7 @@ pub fn snps(fasta: & Vec<(String, Vec<char>)>, prob: f64){
     let step = Uniform::new(0.0, 1.0);
     let mut numberSNPs = 0;
 
-
+    let mut bed = bed::new();
 
 
 
