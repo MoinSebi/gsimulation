@@ -14,6 +14,8 @@ pub fn snps(fasta: & Vec<(String, Vec<char>)>, prob: f64){
 
 
 
+
+
     let mut new_fasta = fasta.clone();
     let mut rng = rand::thread_rng();
     for x in 0..new_fasta.len(){
