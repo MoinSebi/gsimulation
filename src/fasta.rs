@@ -79,7 +79,10 @@ impl fasta_file{
         } else {
             eprintln!("No file")
         }
-        self.fasta_entry.remove(self.fasta_entry.len() -1);
+        eprintln!("ss {}", self.fasta_entry.len());
+        self.fasta_entry.remove(0);
+        self.fasta_entry.remove(1);
+        eprintln!("ss {}", self.fasta_entry.len());
 
     }
 
