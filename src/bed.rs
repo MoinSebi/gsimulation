@@ -1,9 +1,9 @@
 
 /// Dummy bed file struct
 pub struct bed{
-    entries: Vec<bed_entry>,
-    total_len: usize,
-    accessions: Vec<String>,
+    pub entries: Vec<bed_entry>,
+    pub total_len: usize,
+    pub accessions: Vec<String>,
 }
 
 impl bed{
@@ -20,10 +20,10 @@ impl bed{
 
 
 pub struct bed_entry{
-    acc: String,
-    start: usize,
-    end: usize,
-    name: String,
+    pub acc: String,
+    pub start: usize,
+    pub end: usize,
+    pub name: String,
 
 }
 

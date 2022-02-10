@@ -14,7 +14,8 @@ fn main() {
     fasta.from_file("/home/svorbrugg_local/Rust/data/TAIR10.fasta");
     //let fasta = read_fasta("/home/svorbrugg_local/Rust/data/TAIR10.fasta");
     eprintln!("SNPs");
-    snps(&fasta, 0.001);
+    let mut bed1 = bed::bed::new();
+    let g = snps(&fasta, 0.001, & mut bed1);
 }
 
 
