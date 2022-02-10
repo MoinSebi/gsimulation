@@ -4,7 +4,7 @@ use std::path::Path as file_path;
 use std::collections::HashSet;
 
 
-
+#[derive(Debug, Clone)]
 pub struct fasta_file{
     pub fasta_entry: Vec<fasta>,
     pub number_entry: usize,
@@ -34,6 +34,12 @@ impl fasta_file{
         }
         if names.len() != self.fasta_entry.len(){
             self.is_valid = false;
+        }
+    }
+
+    pub fn set_entry_len(self: & mut Self){
+        for x in 0..self.fasta_entry.len(){
+            self.fasta_entry[x].len = self.fasta_entry[x].seq.len();
         }
     }
 
@@ -81,14 +87,15 @@ impl fasta_file{
         }
         eprintln!("ss {}", self.fasta_entry.len());
         self.fasta_entry.remove(0);
-        self.fasta_entry.remove(1);
+        self.check_len();
+        eprintln!("{}", self.fasta_entry[0].seq.len());
         eprintln!("ss {}", self.fasta_entry.len());
 
     }
 
 }
 
-
+#[derive(Debug, Clone)]
 pub struct fasta{
     pub header: String,
     pub seq: Vec<char>,
@@ -139,7 +146,7 @@ impl fasta{
         } else {
             eprintln!("No file")
         }
-        fasta.remove(fasta.len()-1);
+        fasta.remove(0);
         eprintln!("{:?}", fasta.len());
 
     }

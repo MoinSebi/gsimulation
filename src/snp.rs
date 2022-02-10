@@ -30,19 +30,15 @@ pub fn snps(fasta: & fasta_file, prob: f64){
     //     }
     // }
 
-    for x in fasta.iter(){
-        eprintln!("test {}", x.1.len());
-    }
-
     let mut vals: Vec<u32> ;
     let mut step: Uniform<u32>;
     let mut new_fasta = fasta.clone();
-    for x in 0..new_fasta.len(){
-        eprintln!("{}", new_fasta[x].1.len());
-        step = Uniform::new(0, new_fasta[x].1.len() as u32);
+    for x in 0..new_fasta.fasta_entry.len(){
+        eprintln!("{}", new_fasta.fasta_entry[x].seq.len() as u32);
+        step = Uniform::new(0, new_fasta.fasta_entry[x].seq.len() as u32);
         vals = (0..1000).map(|_| rng.sample(&step)).collect();
         for y in vals.iter(){
-            new_fasta[x].1[y.clone() as usize] = test();
+            new_fasta.fasta_entry[x].seq[y.clone() as usize] = test();
             numberSNPs += 1;
         }
     }
