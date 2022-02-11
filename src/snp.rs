@@ -41,6 +41,7 @@ pub fn snps(fasta: & fasta_file, prob: f64, bed1: &mut bed) -> (fasta_file){
         for y in vals.iter(){
             new_fasta.fasta_entry[x].seq[y.clone() as usize] = test();
             numberSNPs += 1;
+            bed1.entries.push(bed_entry::new2(new_fasta.fasta_entry[x].header.as_str(), y.clone() as usize, (y+1) as usize, "daskdja"));
             bed1.entries.push(bed_entry::new());
         }
     }

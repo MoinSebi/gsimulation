@@ -16,6 +16,7 @@ fn main() {
     eprintln!("SNPs");
     let mut bed1 = bed::bed::new();
     let g = snps(&fasta, 0.001, & mut bed1);
+    bed1.to_file("test.csv");
 }
 
 
