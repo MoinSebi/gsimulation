@@ -4,12 +4,14 @@ use std::path::Path as file_path;
 use std::collections::HashSet;
 
 
+
 #[derive(Debug, Clone)]
 pub struct fasta_file{
     pub fasta_entry: Vec<fasta>,
     pub number_entry: usize,
     pub is_valid: bool,
     pub total_len: usize,
+    pub ratio: Vec<f64>,
 
 }
 
@@ -20,6 +22,7 @@ impl fasta_file{
             number_entry: 0,
             is_valid: true,
             total_len: 0,
+            ratio: Vec::new(),
         }
     }
 
@@ -40,6 +43,12 @@ impl fasta_file{
     pub fn set_entry_len(self: & mut Self){
         for x in 0..self.fasta_entry.len(){
             self.fasta_entry[x].len = self.fasta_entry[x].seq.len();
+        }
+    }
+
+    pub fn compute_ratio(self: & mut Self){
+        for x in 0..self.fasta_entry.len(){
+            self.ratio.push((self.fasta_entry[x].len as f64)/(self.total_len as f64));
         }
     }
 
@@ -88,6 +97,7 @@ impl fasta_file{
         eprintln!("ss {}", self.fasta_entry.len());
         self.fasta_entry.remove(0);
         self.check_len();
+        self.compute_ratio();
         eprintln!("{}", self.fasta_entry[0].seq.len());
         eprintln!("ss {}", self.fasta_entry.len());
 
