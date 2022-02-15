@@ -1,13 +1,13 @@
 # Simple genome simulation
 These variations are included:
 - [x] SNPs
-- [x] Insertions
-- [x] Deletions
-- [x] Translocations
-- [x] Inversions
-- [x] Distal duplications
-- [x] Tandem duplications
-- [x] Transpositions
+- [ ] Insertions
+- [ ] Deletions
+- [ ] Translocations
+- [ ] Inversions
+- [ ] Distal duplications
+- [ ] Tandem duplications
+- [ ] Transpositions
 
 Interesting ideas for later: 
 - SNP profile next to SV
