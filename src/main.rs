@@ -1,6 +1,7 @@
 mod fasta;
 mod snp;
 mod bed;
+mod insertion;
 
 use std::io::stdin;
 use fastq::Parser;
