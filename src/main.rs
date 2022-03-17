@@ -5,11 +5,14 @@ mod insertion;
 
 use std::io::stdin;
 use chrono::Local;
+use clap::{App, Arg};
 use env_logger::{Builder, Target};
 use fastq::Parser;
 use log::{info, LevelFilter};
 use crate::fasta::{read_fasta, read_fasta2, fasta_file};
 use crate::snp::snps;
+use std::io::Write;
+
 
 fn main() {
 
@@ -26,6 +29,16 @@ fn main() {
         .target(Target::Stderr)
         .init();
 
+    let matches = App::new("panSV")
+        .version("0.1.0")
+        .author("Sebastian V")
+        .about("packing")
+        .arg(Arg::new("fasta")
+            .short('f')
+                 .long("fasta")
+                 .about("hello")
+                 .takes_value(true))
+        .get_matches();
 
 
     // Collect the name
