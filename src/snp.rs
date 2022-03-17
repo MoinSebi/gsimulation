@@ -53,7 +53,6 @@ pub fn snps(fasta: & fasta_file, prob: f64, bed1: &mut bed) -> (fasta_file){
     //eprintln!("{}", numberSNPs);
 
 
-    eprintln!("{}", numberSNPs);
     new_fasta
 }
 

@@ -96,12 +96,9 @@ impl fasta_file{
         } else {
             eprintln!("No file")
         }
-        eprintln!("ss {}", self.fasta_entry.len());
         self.fasta_entry.remove(0);
         self.check_len();
         self.compute_ratio();
-        eprintln!("{}", self.fasta_entry[0].seq.len());
-        eprintln!("ss {}", self.fasta_entry.len());
 
     }
 
