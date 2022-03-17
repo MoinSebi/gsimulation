@@ -15,6 +15,8 @@ pub struct fasta_file{
 
 }
 
+
+
 impl fasta_file{
     pub fn new() -> Self {
         Self{

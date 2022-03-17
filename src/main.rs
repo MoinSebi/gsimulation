@@ -4,17 +4,39 @@ mod bed;
 mod insertion;
 
 use std::io::stdin;
+use chrono::Local;
+use env_logger::{Builder, Target};
 use fastq::Parser;
+use log::{info, LevelFilter};
 use crate::fasta::{read_fasta, read_fasta2, fasta_file};
 use crate::snp::snps;
 
 fn main() {
-    println!("Hello, world!");
-    eprintln!("Read fasta");
+
+    Builder::new()
+        .format(|buf, record| {
+            writeln!(buf,
+                     "{} [{}] - {}",
+                     Local::now().format("%d/%m/%Y %H:%M:%S %p"),
+                     record.level(),
+                     record.args()
+            )
+        })
+        .filter(None, LevelFilter::Info)
+        .target(Target::Stderr)
+        .init();
+
+
+
+    // Collect the name
+    info!("Genome simulation");
+
+
     let mut fasta: fasta_file = fasta_file::new();
     fasta.from_file("/home/svorbrugg_local/Rust/data/TAIR10.fasta");
     //let fasta = read_fasta("/home/svorbrugg_local/Rust/data/TAIR10.fasta");
-    eprintln!("SNPs");
+
+    info!("Add SNPs");
     let mut bed1 = bed::bed::new();
     let g = snps(&fasta, 0.001, & mut bed1);
     bed1.to_file("test.csv");
