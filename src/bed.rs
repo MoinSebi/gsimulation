@@ -2,13 +2,13 @@ use std::fs::File;
 use std::io::{Write, BufWriter};
 
 /// Dummy bed file struct
-pub struct bed{
-    pub entries: Vec<bed_entry>,
+pub struct Bed {
+    pub entries: Vec<BedEntry>,
     pub total_len: usize,
     pub accessions: Vec<String>,
 }
 
-impl bed{
+impl Bed {
     pub fn new() -> Self{
         Self{
             entries: Vec::new(),
@@ -31,7 +31,7 @@ impl bed{
 }
 
 
-pub struct bed_entry{
+pub struct BedEntry {
     pub acc: String,
     pub start: usize,
     pub end: usize,
@@ -39,7 +39,7 @@ pub struct bed_entry{
 
 }
 
-impl bed_entry{
+impl BedEntry {
     pub fn new() -> Self{
         Self{
             acc: "".to_string(),
@@ -54,7 +54,7 @@ impl bed_entry{
             acc: s1.to_string(),
             start: start,
             end: end,
-            name: "jojoo".to_string()
+            name: name.to_string()
         }
     }
 }

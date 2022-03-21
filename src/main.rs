@@ -3,13 +3,11 @@ mod snp;
 mod bed;
 mod insertion;
 
-use std::io::stdin;
 use chrono::Local;
 use clap::{App, Arg};
 use env_logger::{Builder, Target};
-use fastq::Parser;
 use log::{info, LevelFilter};
-use crate::fasta::{read_fasta, read_fasta2, fasta_file};
+use crate::fasta::{FastaFile};
 use crate::snp::snps;
 use std::io::Write;
 
@@ -29,7 +27,7 @@ fn main() {
         .target(Target::Stderr)
         .init();
 
-    let matches = App::new("panSV")
+    let _matches = App::new("panSV")
         .version("0.1.0")
         .author("Sebastian V")
         .about("packing")
@@ -45,13 +43,13 @@ fn main() {
     info!("Genome simulation");
 
 
-    let mut fasta: fasta_file = fasta_file::new();
+    let mut fasta: FastaFile = FastaFile::new();
     fasta.from_file("/home/svorbrugg_local/Rust/data/TAIR10.fasta");
     //let fasta = read_fasta("/home/svorbrugg_local/Rust/data/TAIR10.fasta");
 
     info!("Add SNPs");
-    let mut bed1 = bed::bed::new();
-    let g = snps(&fasta, 0.001, & mut bed1);
+    let mut bed1 = bed::Bed::new();
+    let _g = snps(&fasta, 0.001, & mut bed1);
     bed1.to_file("test.csv");
 }
 

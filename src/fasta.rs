@@ -6,8 +6,8 @@ use std::collections::HashSet;
 
 
 #[derive(Debug, Clone)]
-pub struct fasta_file{
-    pub fasta_entry: Vec<fasta>,
+pub struct FastaFile {
+    pub fasta_entry: Vec<Fasta>,
     pub number_entry: usize,
     pub is_valid: bool,
     pub total_len: usize,
@@ -17,7 +17,7 @@ pub struct fasta_file{
 
 
 
-impl fasta_file{
+impl FastaFile {
     pub fn new() -> Self {
         Self{
             fasta_entry: Vec::new(),
@@ -28,10 +28,12 @@ impl fasta_file{
         }
     }
 
+    #[allow(dead_code)]
     pub fn count(self: & mut Self){
         self.number_entry = self.fasta_entry.len();
     }
 
+    #[allow(dead_code)]
     pub fn check_valid(self: & mut Self){
         let mut names = HashSet::new();
         for x in self.fasta_entry.iter(){
@@ -42,6 +44,7 @@ impl fasta_file{
         }
     }
 
+    #[allow(dead_code)]
     pub fn set_entry_len(self: & mut Self){
         for x in 0..self.fasta_entry.len(){
             self.fasta_entry[x].len = self.fasta_entry[x].seq.len();
@@ -63,14 +66,12 @@ impl fasta_file{
     }
 
     pub fn from_file(self: & mut Self, file: &str){
-
-        let mut fasta = fasta::new();
         if file_path::new(file).exists() {
             let file = File::open(file).expect("ERROR: CAN'T OPEN FILE");
             let reader = BufReader::new(file);
 
 
-            let mut fasta = fasta::new();
+            let mut fasta = Fasta::new();
 
             for line in reader.lines(){
                 let l = line.unwrap();
@@ -78,7 +79,7 @@ impl fasta_file{
 
                     self.fasta_entry.push(fasta);
 
-                    fasta = fasta::new();
+                    fasta = Fasta::new();
                     fasta.header = l;
                     fasta.seq = Vec::new();
                 } else {
@@ -105,14 +106,14 @@ impl fasta_file{
 }
 
 #[derive(Debug, Clone)]
-pub struct fasta{
+pub struct Fasta {
     pub header: String,
     pub seq: Vec<char>,
     pub len: usize,
 
 }
 
-impl fasta{
+impl Fasta {
     pub fn new() -> Self{
         Self{
             header: "".to_string(),
@@ -121,6 +122,7 @@ impl fasta{
         }
     }
 
+    #[allow(dead_code)]
     pub fn from_file(file: &str){
         let mut fasta: Vec<(String, Vec<char>)> = Vec::new();
 
@@ -162,7 +164,7 @@ impl fasta{
 
 }
 
-
+#[allow(dead_code)]
 pub fn read_fasta(file: &str) -> Vec<(String, String)>{
     let mut fasta: Vec<(String, String)> = Vec::new();
     if file_path::new(file).exists() {
@@ -198,6 +200,7 @@ pub fn read_fasta(file: &str) -> Vec<(String, String)>{
     fasta
 }
 
+#[allow(dead_code)]
 pub fn read_fasta2(file: &str) -> Vec<(String, Vec<char>)>{
     let mut fasta: Vec<(String, Vec<char>)> = Vec::new();
 
